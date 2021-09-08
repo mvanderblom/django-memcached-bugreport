@@ -1,11 +1,6 @@
 # django-memcached-bugreport
 
-**run server**
-
-`gunicorn django_memcached.wsgi:application`
-
-**memcached**
-
-`docker run ...`
-
-**client**
+- `docker-compose up`
+- `pipenv install`
+- `pipenv run main.py`
+- `docker logs`
