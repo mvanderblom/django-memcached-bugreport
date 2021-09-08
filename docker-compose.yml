@@ -1,11 +1,22 @@
 version: "3.8"
 
 services:
-  django-application:
-    container_name: django-application
+  client-application:
+    container_name: client
     build:
-      context: .
-      dockerfile: ./django_memcached/Dockerfile
+      context: ./client
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_HOST=server-application
+      - SERVER_PORT=8000
+    depends_on:
+      - server-application
+
+  server-application:
+    container_name: server
+    build:
+      context: ./django_memcached
+      dockerfile: Dockerfile
     environment:
       - MEMCACHED_HOST=memcached
       - MEMCACHED_PORT=11211
@@ -15,6 +26,7 @@ services:
       - memcached
 
   memcached:
+    container_name: memcached
     image: memcached:1.5.12-alpine
     ports:
       - "11211:11211"

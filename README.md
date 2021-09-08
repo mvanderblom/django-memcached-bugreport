@@ -1,6 +1,4 @@
 # django-memcached-bugreport
 
-- `docker-compose up`
-- `pipenv install`
-- `pipenv run main.py`
-- `docker logs`
+- `docker-compose up -d`
+- `docker logs server`
