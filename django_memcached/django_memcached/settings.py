@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t@@j#7rr8#*=1n-&li$qz+t(a8n1eel4p1#2($u^gmj1sqtfso
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['server-application']
+ALLOWED_HOSTS = ['server-application', 'localhost']
 
 
 # Application definition
@@ -128,6 +128,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        'LOCATION': f"{os.getenv('MEMCACHED_HOST')}:{os.getenv('MEMCACHED_PORT')}",
+        'LOCATION': f"{os.getenv('MEMCACHED_HOST', 'localhost')}:{os.getenv('MEMCACHED_PORT', '11211')}",
+        'OPTIONS': {
+            'use_pooling': True,
+        }
     }
 }
